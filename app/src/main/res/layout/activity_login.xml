@@ -86,6 +86,7 @@
                                         android:layout_height="350dp">
 
                                         <ImageView
+                                            android:paddingVertical="15dp"
                                             android:src="@drawable/logo_vectorizado"
                                             android:layout_width="match_parent"
                                             android:layout_height="100dp" />
