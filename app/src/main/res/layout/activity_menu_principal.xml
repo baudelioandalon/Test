@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuPrincipal"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.tistory.zladnrms.roundablelayout.RoundableLayout
+        android:layout_margin="20dp"
+        android:elevation="10dp"
+        app:backgroundColor="@color/blue_light"
+        app:cornerLeftSide="15dp"
+        app:cornerRightSide="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_users"
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
+            <TextView
+                android:layout_margin="10dp"
+                android:textColor="@color/blue_strong"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/mis_colaboradores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </com.tistory.zladnrms.roundablelayout.RoundableLayout>
+    <com.tistory.zladnrms.roundablelayout.RoundableLayout
+        android:layout_margin="20dp"
+        android:elevation="10dp"
+        android:layout_gravity="center"
+        app:backgroundColor="@color/blue_light"
+        app:cornerLeftSide="15dp"
+        app:cornerRightSide="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_more"
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
+            <TextView
+                android:layout_margin="10dp"
+                android:textColor="@color/green_strong"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/mis_colaboradores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </com.tistory.zladnrms.roundablelayout.RoundableLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
