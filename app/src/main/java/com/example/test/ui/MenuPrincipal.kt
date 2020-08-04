@@ -33,17 +33,18 @@ class MenuPrincipal : AppCompatActivity() {
             this.lifecycleOwner = this@MenuPrincipal
             this.viewModel = viewModel
         }
-        viewModel.data.observeForever{
-            if(it.success){
-                prettyToast.showToast("Datos obtenidos con exito", TypePrettyToast.SUCCESS_TOAST, this)
-            }else{
-                prettyToast.showToast(it.error?.message.toString(), TypePrettyToast.ERROR_TOAST, this)
-                Log.e("data", it.code.toString())
-                Log.e("data", it.success.toString())
-                Log.e("data", it.data?.file.toString())
-                Log.e("data error", it.error?.message.toString())
+        viewModel.data.observeForever {
+            it.apply {
+                if (success) {
+                    prettyToast.showToast("Datos obtenidos con exito", TypePrettyToast.SUCCESS_TOAST, this@MenuPrincipal)
+                    Log.e("data code", code.toString())
+                    Log.e("data json", data!!.file)
+                } else {
+                    prettyToast.showToast(error?.message.toString(), TypePrettyToast.ERROR_TOAST, this@MenuPrincipal)
+                    Log.e("data code", code.toString())
+                    Log.e("data error", error?.message.toString())
+                }
             }
-
         }
     }
 }

@@ -11,13 +11,12 @@ class DecompressZip @Inject constructor() {
     fun unPackZip(path: String): String {
         val wwis: InputStream
         val zis: ZipInputStream
-        var filename = ""
+        val filename: String
         try {
             wwis = FileInputStream(path)
             zis = ZipInputStream(BufferedInputStream(wwis))
             var ze: ZipEntry
-            val buffer = ByteArray(4096)
-            var count: Int
+            ByteArray(4096)
             while (zis.nextEntry.also { ze = it } != null) {
                 Log.e("name", ze.name)
                 filename = ze.name
@@ -57,7 +56,7 @@ class DecompressZip @Inject constructor() {
                 text.append(line)
                 text.append('\n')
             }
-            Log.e("texto", text.toString())
+//            Log.e("texto", text.toString())
             data = text.toString()
             br.close()
         } catch (e: IOException) {

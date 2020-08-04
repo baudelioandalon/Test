@@ -14,7 +14,7 @@ class MenuRepository @Inject constructor(){
         DaggerComponentMenuWebDS.create().inject(this)
     }
 
-    fun requestDataFromNetwork(searchString: String, observer: Observer<Data>) {
+    fun requestDataURLFromNetwork(searchString: String, observer: Observer<Data>) {
         menuWebDS.requestUserNetwork(searchString, observer)
     }
 

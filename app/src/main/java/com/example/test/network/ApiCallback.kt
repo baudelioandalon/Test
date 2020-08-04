@@ -6,8 +6,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ApiCallback<T : Data>(private val observer: Observer<Any?>) :
-    Callback<T> {
+class ApiCallback<T : Data>(private val observer: Observer<Any?>) : Callback<T> {
     override fun onResponse(
         call: Call<T>,
         response: Response<T>) {

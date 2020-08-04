@@ -21,16 +21,15 @@ class MenuViewModel @Inject constructor(): ViewModel(), LifecycleObserver {
         DaggerComponentFileRepository.create().inject(this)
     }
 
-    private fun onRequest(searchString: String){
-        menuRepository.requestDataFromNetwork(searchString, observer())
+    private fun onRequestURL(searchString: String){
+        menuRepository.requestDataURLFromNetwork(searchString, observerContentZip())
     }
 
     private fun getZipFile(url: String){
-        Log.e("URL", url)
         fileRespository.requestFileFromNetwork(url,observerFileDownloading() )
     }
 
-    private fun observer() : Observer<Data>{
+    private fun observerContentZip() : Observer<Data>{
         return Observer {response ->
             if(response != null){
                 data.postValue(response)
@@ -45,7 +44,7 @@ class MenuViewModel @Inject constructor(): ViewModel(), LifecycleObserver {
         return Observer {response ->
             if(response != null){
                 data.postValue(response)
-                getZipFile(data.value?.data?.file.toString())
+                getZipFile(data.value?.data!!.file)
             }else{
                 data.postValue(null)
             }
@@ -55,7 +54,7 @@ class MenuViewModel @Inject constructor(): ViewModel(), LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate(){
         Log.e("lifecycle","onCreate")
-        onRequest("0")
+        onRequestURL("0")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
