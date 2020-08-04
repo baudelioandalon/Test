@@ -1,7 +1,7 @@
 package com.example.test.data.datasource.web
 
 import androidx.lifecycle.Observer
-import com.example.test.model.AuthResult
+import com.example.test.network.model.AuthResult
 import com.example.test.sys.di.module.enums.StartSessionResult
 import com.google.firebase.auth.FirebaseAuth
 import javax.inject.Inject

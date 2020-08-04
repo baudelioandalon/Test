@@ -2,7 +2,7 @@ package com.example.test.domain
 
 import androidx.lifecycle.Observer
 import com.example.test.data.datasource.web.LoginWebDS
-import com.example.test.model.AuthResult
+import com.example.test.network.model.AuthResult
 import com.example.test.sys.di.component.DaggerComponentLoginWebDS
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.example.test.model
+package com.example.test.network.model
 
 import com.example.test.sys.di.module.enums.StartSessionResult
 

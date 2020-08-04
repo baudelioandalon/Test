@@ -1,18 +1,17 @@
 package com.example.test.sys.di.module
 
-
-import com.example.test.utils.PrettyToast
+import com.example.test.domain.MenuRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class ModulePrettyToast{
+class ModuleMenuRepository{
 
     @Provides
     @Singleton
-    fun providesPrettyToast(): PrettyToast {
-        return PrettyToast()
+    fun providesMenuRepository(): MenuRepository {
+        return MenuRepository()
     }
 
 }

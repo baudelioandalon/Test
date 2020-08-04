@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.test.domain.LoginRepository
-import com.example.test.model.AuthResult
+import com.example.test.network.model.AuthResult
 import com.example.test.sys.di.component.DaggerComponentLoginRepository
 import com.example.test.sys.di.module.enums.StartSessionResult
 import javax.inject.Inject

@@ -1,10 +1,11 @@
-package com.example.test
+package com.example.test.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import com.example.test.R
 import com.example.test.databinding.ActivityLoginBinding
 import com.example.test.sys.di.component.DaggerComponentLoginViewModel
 import com.example.test.sys.di.component.DaggerComponentPrettyToast
@@ -30,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         DaggerComponentPrettyToast.create().inject(this)
         DaggerComponentLoginViewModel.create().inject(this)
         dataBindingUtil = DataBindingUtil.setContentView<ActivityLoginBinding>(this,
-            R.layout.activity_login).apply {
+                R.layout.activity_login).apply {
             //*** Con el apply puedes acceder a lo que está dentro del elemento ***
             this.lifecycleOwner = this@LoginActivity
             this.viewModelLogin = viewModelLogin
