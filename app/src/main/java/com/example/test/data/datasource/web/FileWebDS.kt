@@ -32,8 +32,8 @@ class FileWebDS @Inject constructor(){
                         val loadedFile = response.body
                         Log.e("path", loadedFile.absolutePath)
                         Log.e("onLoad", "correct")
-                        val action = decompressZip.unPackZip(loadedFile.absolutePath)
-                        observer.onChanged(Data(response.code, DataX(action),true,null))
+                        val valorcito = decompressZip.unPackZip(loadedFile.absolutePath)
+                        observer.onChanged(Data(response.code, DataX(valorcito),true,null))
                     }
                     override fun onError(request: FileLoadRequest, t: Throwable) {
                         observer.onChanged(Data(400, null,false,t))

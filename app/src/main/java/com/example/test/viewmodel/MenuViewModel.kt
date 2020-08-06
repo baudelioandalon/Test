@@ -21,6 +21,7 @@ class MenuViewModel @Inject constructor(): ViewModel(), LifecycleObserver {
         DaggerComponentFileRepository.create().inject(this)
     }
 
+
     private fun onRequestURL(searchString: String){
         menuRepository.requestDataURLFromNetwork(searchString, observerContentZip())
     }

@@ -1,8 +1,8 @@
 package com.example.test.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.test.R
 import com.example.test.databinding.ActivityMenuPrincipalBinding
@@ -11,7 +11,11 @@ import com.example.test.sys.di.component.DaggerComponentPrettyToast
 import com.example.test.utils.PrettyToast
 import com.example.test.utils.TypePrettyToast
 import com.example.test.viewmodel.MenuViewModel
+import com.google.gson.Gson
+import com.google.gson.JsonElement
+import com.google.gson.JsonParser
 import javax.inject.Inject
+
 
 class MenuPrincipal : AppCompatActivity() {
     @Inject
@@ -37,8 +41,7 @@ class MenuPrincipal : AppCompatActivity() {
             it.apply {
                 if (success) {
                     prettyToast.showToast("Datos obtenidos con exito", TypePrettyToast.SUCCESS_TOAST, this@MenuPrincipal)
-                    Log.e("data code", code.toString())
-                    Log.e("data json", data!!.file)
+                    saveData(it.data!!.file)
                 } else {
                     prettyToast.showToast(error?.message.toString(), TypePrettyToast.ERROR_TOAST, this@MenuPrincipal)
                     Log.e("data code", code.toString())
@@ -46,5 +49,23 @@ class MenuPrincipal : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun saveData(json: String) {
+//        Log.e("empleado json", json)
+//        val arrayListTutorialType = object : TypeToken<UserModel>() {}.type
+        val gson = Gson()
+        gson.apply {
+            val element: JsonElement = fromJson(toJsonTree(json), JsonElement::class.java)
+            Log.e("elemento", element.asJsonObject.toString())
+        }
+
+//        val db = Room.databaseBuilder(applicationContext, AppDB::class.java, "userDB").build()
+//        val user = UserEntity()
+//        Thread{
+//            db.clearAllTables()
+//
+//            db.userDAO().saveUser(user)
+//        }.start()
     }
 }
