@@ -1,8 +1,13 @@
 package com.example.test.ui
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.test.R
 import com.example.test.databinding.ActivityMenuPrincipalBinding
@@ -49,16 +54,17 @@ class MenuPrincipal : AppCompatActivity() {
                 }
             }
         }
+
     }
 
     private fun saveData(json: String) {
 //        Log.e("empleado json", json)
 //        val arrayListTutorialType = object : TypeToken<UserModel>() {}.type
-        val gson = Gson()
-        gson.apply {
-            val element: JsonElement = fromJson(toJsonTree(json), JsonElement::class.java)
-            Log.e("elemento", element.asJsonObject.toString())
-        }
+//        val gson = Gson()
+//        gson.apply {
+//            val element: JsonElement = fromJson(toJsonTree(json), JsonElement::class.java)
+//            Log.e("elemento", element.asJsonObject.toString())
+//        }
 
 //        val db = Room.databaseBuilder(applicationContext, AppDB::class.java, "userDB").build()
 //        val user = UserEntity()
