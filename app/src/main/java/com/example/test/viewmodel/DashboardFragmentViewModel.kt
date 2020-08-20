@@ -9,5 +9,4 @@ class DashboardFragmentViewModel @Inject constructor() : ViewModel(){
 
     val users: MutableLiveData<ArrayList<UserModel>> = MutableLiveData()
 
-
 }

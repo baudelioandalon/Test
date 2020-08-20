@@ -58,6 +58,5 @@ import javax.inject.Inject
             viewModel = ViewModelProvider(it!!).get(DashboardFragmentViewModel::class.java)
         }
 
-
     }
 }

@@ -2,14 +2,14 @@ package com.example.test.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.test.domain.UserRepository
+import com.example.test.domain.DashboardUserRepository
 import com.example.test.domain.FileRepository
 import com.example.test.domain.MenuRepository
 import com.example.test.network.model.Data
 import com.example.test.sys.di.component.DaggerComponentDecompressZip
 import com.example.test.sys.di.component.DaggerComponentFileRepository
 import com.example.test.sys.di.component.DaggerComponentMenuRepository
-import com.example.test.sys.di.component.DaggerComponentUserRepository
+import com.example.test.sys.di.component.DaggerComponentDashboardUserRepository
 import com.example.test.sys.utils.DecompressZip
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -26,12 +26,12 @@ class MenuViewModel @Inject constructor(): ViewModel(), LifecycleObserver {
     @Inject lateinit var menuRepository: MenuRepository
     @Inject lateinit var fileRespository: FileRepository
     @Inject lateinit var decompressZip: DecompressZip
-    @Inject lateinit var userRepository: UserRepository
+    @Inject lateinit var dashboardUserRepository: DashboardUserRepository
 
     val data: MutableLiveData<Data> = MutableLiveData()
 
     init {
-        DaggerComponentUserRepository.create().inject(this)
+        DaggerComponentDashboardUserRepository.create().inject(this)
         DaggerComponentMenuRepository.create().inject(this)
         DaggerComponentFileRepository.create().inject(this)
         DaggerComponentDecompressZip.create().inject(this)
@@ -92,7 +92,7 @@ class MenuViewModel @Inject constructor(): ViewModel(), LifecycleObserver {
                     Charset.defaultCharset().decode(bb).toString()
                 }
                 viewModelScope.launch {
-                    userRepository.saveUsers(jString)
+                    dashboardUserRepository.saveUsers(jString)
                 }
             }
         }
