@@ -1,33 +1,25 @@
 package com.example.test.ui
 
-import android.Manifest
-import android.content.pm.PackageManager
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.test.R
 import com.example.test.databinding.ActivityMenuPrincipalBinding
 import com.example.test.sys.di.component.DaggerComponentMenuViewModel
 import com.example.test.sys.di.component.DaggerComponentPrettyToast
-import com.example.test.utils.PrettyToast
-import com.example.test.utils.TypePrettyToast
+import com.example.test.sys.utils.PrettyToast
+import com.example.test.sys.utils.TypePrettyToast
 import com.example.test.viewmodel.MenuViewModel
-import com.google.gson.Gson
-import com.google.gson.JsonElement
-import com.google.gson.JsonParser
 import javax.inject.Inject
-
 
 class MenuPrincipal : AppCompatActivity() {
     @Inject
     lateinit var viewModel: MenuViewModel
     @Inject
     lateinit var prettyToast: PrettyToast
-    lateinit var dataBindingUtil: ActivityMenuPrincipalBinding
+    lateinit var binding: ActivityMenuPrincipalBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +27,7 @@ class MenuPrincipal : AppCompatActivity() {
         DaggerComponentMenuViewModel.create().inject(this)
         DaggerComponentPrettyToast.create().inject(this)
         lifecycle.addObserver(viewModel)
-        dataBindingUtil = DataBindingUtil.setContentView<ActivityMenuPrincipalBinding>(this,
+        binding = DataBindingUtil.setContentView<ActivityMenuPrincipalBinding>(this,
             R.layout.activity_menu_principal
         ).apply {
             //*** Con el apply puedes acceder a lo que está dentro del elemento ***
@@ -53,6 +45,10 @@ class MenuPrincipal : AppCompatActivity() {
                     Log.e("data error", error?.message.toString())
                 }
             }
+        }
+
+        binding.misEmpleados.setOnClickListener {
+            startActivity(Intent(this, InicioActivity::class.java))
         }
 
     }

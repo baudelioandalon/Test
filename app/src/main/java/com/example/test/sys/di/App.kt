@@ -18,6 +18,9 @@ class App : Application(){
         DaggerComponentMenuRepository.builder().build()
         DaggerComponentFileRepository.builder().build()
         DaggerComponentDecompressZip.builder().build()
+        DaggerComponentUserRepository.builder().build()
+        DaggerComponentDashboardFragmentViewModel.builder().build()
+        DaggerComponentUsersFragmentViewModel.builder().build()
     }
 
     companion object {

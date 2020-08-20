@@ -1,16 +1,16 @@
 package com.example.test.sys.di.module
 
-import com.example.test.sys.utils.DecompressZip
+import com.example.test.domain.UserRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class ModuleDecompressZip {
+class ModuleUserRepository {
 
     @Provides
     @Singleton
-    fun providesDecompressZip() : DecompressZip {
-        return DecompressZip()
+    fun providesUserRepository() : UserRepository {
+        return UserRepository()
     }
 }

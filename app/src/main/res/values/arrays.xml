@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="ld_activityScreenTitles">
+        <item>Modo mapa</item>
+        <item>Modo lista</item>
+    </string-array>
+
+    <array name="ld_activityScreenIcons">
+        <item>@drawable/ic_map</item>
+        <item>@drawable/ic_users</item>
+    </array>
+
+</resources>

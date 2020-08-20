@@ -1,16 +1,17 @@
 package com.example.test.sys.di.module
 
-import com.example.test.sys.utils.DecompressZip
+import com.example.test.sys.utils.MethodMenu
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class ModuleDecompressZip {
+class ModuleMethodMenu{
 
     @Provides
     @Singleton
-    fun providesDecompressZip() : DecompressZip {
-        return DecompressZip()
+    fun providesMethodMenu(): MethodMenu {
+        return MethodMenu()
     }
+
 }

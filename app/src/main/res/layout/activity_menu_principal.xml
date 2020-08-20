@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="viewModel"
@@ -7,53 +9,59 @@
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat android:orientation="vertical"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.MenuPrincipal"
-        android:gravity="center"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:gravity="center">
 
         <com.tistory.zladnrms.roundablelayout.RoundableLayout
+            android:id="@+id/mis_empleados"
             android:focusable="true"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
-            android:layout_margin="20dp"
+            android:layout_marginBottom="20dp"
+            android:paddingHorizontal="30dp"
             android:elevation="10dp"
             app:backgroundColor="@color/blue_light"
             app:cornerLeftSide="15dp"
             app:cornerRightSide="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
                 <ImageView
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/ic_users"
                     android:layout_width="100dp"
-                    android:layout_height="100dp"/>
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_users" />
+
                 <TextView
-                    android:textAlignment="center"
                     android:layout_width="match_parent"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/blue_strong"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Mis \ncolaboradores"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal" />
+                    android:layout_marginVertical="10dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center_horizontal"
+                    android:text="Mis \ncolaboradores"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue_strong" />
             </LinearLayout>
 
         </com.tistory.zladnrms.roundablelayout.RoundableLayout>
         <com.tistory.zladnrms.roundablelayout.RoundableLayout
+            android:id="@+id/add_empleado"
             android:focusable="true"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
-            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="30dp"
             android:elevation="10dp"
             android:layout_gravity="center"
             app:backgroundColor="@color/blue_light"
@@ -72,13 +80,13 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
                     android:padding="10dp"
                     android:src="@drawable/ic_more" />
 
                 <TextView
                     android:textAlignment="center"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:fontFamily="@font/roboto_bold"

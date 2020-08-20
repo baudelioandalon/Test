@@ -7,12 +7,14 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.test.R
+import com.example.test.data.datasource.local.AppDB
 import com.example.test.databinding.ActivityLoginBinding
+import com.example.test.sys.di.App
 import com.example.test.sys.di.component.DaggerComponentLoginViewModel
 import com.example.test.sys.di.component.DaggerComponentPrettyToast
 import com.example.test.sys.di.module.enums.StartSessionResult
-import com.example.test.utils.PrettyToast
-import com.example.test.utils.TypePrettyToast
+import com.example.test.sys.utils.PrettyToast
+import com.example.test.sys.utils.TypePrettyToast
 import com.example.test.viewmodel.LoginViewModel
 import javax.inject.Inject
 
@@ -32,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
         DaggerComponentPrettyToast.create().inject(this)
         DaggerComponentLoginViewModel.create().inject(this)
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        AppDB.get(App.getAppContext())
         dataBindingUtil = DataBindingUtil.setContentView<ActivityLoginBinding>(this,
                 R.layout.activity_login).apply {
             //*** Con el apply puedes acceder a lo que está dentro del elemento ***
