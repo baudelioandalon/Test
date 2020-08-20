@@ -1,6 +1,5 @@
 package com.example.test.data.datasource.local
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room

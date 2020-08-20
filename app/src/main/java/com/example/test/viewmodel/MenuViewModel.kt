@@ -92,7 +92,7 @@ class MenuViewModel @Inject constructor(): ViewModel(), LifecycleObserver {
                     Charset.defaultCharset().decode(bb).toString()
                 }
                 viewModelScope.launch {
-                    dashboardUserRepository.saveUsers(jString)
+                    dashboardUserRepository.setLocalUsers(jString)
                 }
             }
         }

@@ -1,22 +1,25 @@
 package com.example.test.ui
 
-import android.app.Activity
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.test.R
 import com.example.test.databinding.FragmentDashboardBinding
+import com.example.test.sys.di.component.DaggerComponentColorMarker
 import com.example.test.sys.di.component.DaggerComponentDashboardFragmentViewModel
+import com.example.test.sys.utils.ColorMarker
 import com.example.test.viewmodel.DashboardFragmentViewModel
-import com.example.test.viewmodel.LoginViewModel
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import javax.inject.Inject
 
 
@@ -25,38 +28,47 @@ import javax.inject.Inject
  */
   class DashboardFragment : Fragment() {
 
-    @Inject
-    lateinit var viewModel: DashboardFragmentViewModel
-    lateinit var binding: FragmentDashboardBinding
-    private lateinit var mMap : GoogleMap
-    private var mapReady = false
+    @Inject lateinit var viewModel: DashboardFragmentViewModel
+    @Inject lateinit var colorMarker: ColorMarker
+    private lateinit var binding: FragmentDashboardBinding
+
+    private val DEFAULT_ZOOM = 16f
+    var count = 0
 
     @Nullable
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        Log.e("onCreateView", count++.toString())
         DaggerComponentDashboardFragmentViewModel.create().inject(this)
+        DaggerComponentColorMarker.create().inject(this)
+        viewModel = ViewModelProvider(this).get(DashboardFragmentViewModel::class.java)
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val mapFragment = childFragmentManager.findFragmentById(R.id.content_map) as SupportMapFragment
-        mapFragment.getMapAsync{
-            googleMap ->
-            mMap = googleMap
-            mapReady = true
-            updateMap()
-        }
+        mapFragment.getMapAsync{ googleMap ->
+            viewModel.mMap = googleMap
+            viewModel.requestLocalUsers() }
         return  binding.root}
 
-    private fun updateMap() {
-
+    override fun onViewCreated(view: View, @Nullable savedInstanceState: Bundle?) {
+        Log.e("onViewCreated", count++.toString())
     }
-
-
-    override fun onViewCreated(view: View, @Nullable savedInstanceState: Bundle?) {}
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        activity.let {
-            viewModel = ViewModelProvider(it!!).get(DashboardFragmentViewModel::class.java)
-        }
+        Log.e("onActivityCreated", count++.toString())
 
+        viewModel.users.observe(viewLifecycleOwner, Observer {
+            it.forEach { user ->
+                user.apply {
+                        val place = LatLng(location.lat.toDouble(), location.log.toDouble())
+                        viewModel.mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(place, DEFAULT_ZOOM))
+                        viewModel.mMap!!.addMarker(MarkerOptions().position(place).title("$id \n $mail \n lat: ${this.location.lat} " +
+                                "\n log: ${this.location.log}")
+                            .snippet(name).draggable(false)
+                            .icon(colorMarker.markerIcon).zIndex(1.0f)
+                        )
+                }
+            }
+        })
     }
 }

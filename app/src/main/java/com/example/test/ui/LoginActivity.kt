@@ -60,6 +60,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(Intent(this, MenuPrincipal::class.java))
                     dataBindingUtil.scrollContent.visibility = View.VISIBLE
                     dataBindingUtil.imgStarting.visibility = View.GONE
+                    finish()
                 }
                 StartSessionResult.EMAIL_NOT_VERIFIED -> {
                     prettyToast.showToast("Verifique el correo electronico, antes de iniciar sesion", TypePrettyToast.ERROR_TOAST, this)
