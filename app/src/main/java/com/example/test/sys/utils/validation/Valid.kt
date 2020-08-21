@@ -31,7 +31,7 @@ class Valid @Inject constructor(){
     *@return Boolean
     */
     fun isValid(activity: Activity, element: Array<Element>): Boolean {
-        var result = false
+        val list: ArrayList<Boolean> = arrayListOf()
         element.forEach{
             it.validationMetrics.forEach { validationMetrics ->
                 when (validationMetrics.validation) {
@@ -50,7 +50,7 @@ class Valid @Inject constructor(){
                                                     } else {
                                                         validationMetrics.incorrect
                                                     }
-                                                    result = false
+                                                    list.add(false)
                                                 }
                                                 //Case 2
                                                 text.toString().trim().length < validationMetrics.whichLimit!! -> {
@@ -60,7 +60,7 @@ class Valid @Inject constructor(){
                                                     } else {
                                                         validationMetrics.incorrect
                                                     }
-                                                    result = false
+                                                    list.add(false)
                                                 }
                                                 //Case Else
                                                 else -> {
@@ -71,7 +71,7 @@ class Valid @Inject constructor(){
                                                             TypePrettyToast.SUCCESS_TOAST,
                                                             activity)
                                                     }
-                                                    result = true
+                                                    list.add(true)
                                                 }
                                             }
                                         }
@@ -90,7 +90,7 @@ class Valid @Inject constructor(){
                                                 null -> {
                                                     strokeLineColor = ContextCompat.getColor(App.getAppContext(), R.color.red)
                                                     strokeLineWidth = 4f
-                                                    result = false
+                                                    list.add(false)
                                                 }
                                             }
                                         }
@@ -114,7 +114,7 @@ class Valid @Inject constructor(){
                                                         } else {
                                                             validationMetrics.incorrect
                                                         }
-                                                        result = false
+                                                        list.add(false)
                                                     }
                                                     //Case 2
                                                     !Patterns.EMAIL_ADDRESS.matcher(text.toString().trim()).matches() -> {
@@ -124,7 +124,7 @@ class Valid @Inject constructor(){
                                                         } else {
                                                             validationMetrics.incorrect
                                                         }
-                                                        result = false
+                                                        list.add(false)
                                                     }
                                                     else -> {
                                                         background = ContextCompat.getDrawable(App.getAppContext(),R.drawable.simple_with_border_gray)
@@ -134,7 +134,7 @@ class Valid @Inject constructor(){
                                                                 TypePrettyToast.SUCCESS_TOAST,
                                                                 activity)
                                                         }
-                                                        result = true
+                                                        list.add(true)
                                                     }
                                                 }
                                         }
@@ -158,7 +158,7 @@ class Valid @Inject constructor(){
                                                         } else {
                                                             validationMetrics.incorrect
                                                         }
-                                                        result = false
+                                                        list.add(false)
                                                     }
                                                     //Case 2
                                                     text.toString().trim().toFloat() <= -90 || text.toString().trim().toFloat() >= 90 -> {
@@ -168,7 +168,7 @@ class Valid @Inject constructor(){
                                                         } else {
                                                             validationMetrics.incorrect
                                                         }
-                                                        result = false
+                                                        list.add(false)
                                                     }
                                                     else -> {
                                                         background = ContextCompat.getDrawable(App.getAppContext(),R.drawable.simple_with_border_gray)
@@ -178,7 +178,7 @@ class Valid @Inject constructor(){
                                                                 TypePrettyToast.SUCCESS_TOAST,
                                                                 activity)
                                                         }
-                                                        result = true
+                                                        list.add(true)
                                                     }
                                                 }
                                             }
@@ -202,7 +202,7 @@ class Valid @Inject constructor(){
                                                     } else {
                                                         validationMetrics.incorrect
                                                     }
-                                                    result = false
+                                                    list.add(false)
                                                 }
                                                 //Case 2
                                                 text.toString().trim().toFloat() <= -180 || text.toString().trim().toFloat() >= 180 -> {
@@ -212,7 +212,7 @@ class Valid @Inject constructor(){
                                                     } else {
                                                         validationMetrics.incorrect
                                                     }
-                                                    result = false
+                                                    list.add(false)
                                                 }
                                                 else -> {
                                                     background = ContextCompat.getDrawable(App.getAppContext(),R.drawable.simple_with_border_gray)
@@ -222,7 +222,7 @@ class Valid @Inject constructor(){
                                                             TypePrettyToast.SUCCESS_TOAST,
                                                             activity)
                                                     }
-                                                    result = true
+                                                    list.add(true)
                                                 }
                                             }
                                         }
@@ -234,7 +234,7 @@ class Valid @Inject constructor(){
                     }
                 }
             }
-        return result
+        return !list.contains(false)
     }
 
 }
