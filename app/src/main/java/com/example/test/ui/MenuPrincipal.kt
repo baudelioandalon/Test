@@ -11,7 +11,7 @@ import com.example.test.databinding.ActivityMenuPrincipalBinding
 import com.example.test.sys.di.component.DaggerComponentMenuViewModel
 import com.example.test.sys.di.component.DaggerComponentPrettyToast
 import com.example.test.sys.utils.PrettyToast
-import com.example.test.sys.utils.TypePrettyToast
+import com.example.test.sys.utils.validation.enums.TypePrettyToast
 import com.example.test.viewmodel.MenuViewModel
 import javax.inject.Inject
 
@@ -38,7 +38,7 @@ class MenuPrincipal : AppCompatActivity() {
         viewModel.data.observeForever {
             it.apply {
                 if (success) {
-                    prettyToast.showToast("Datos obtenidos con exito", TypePrettyToast.SUCCESS_TOAST, this@MenuPrincipal)
+//                    prettyToast.showToast("Datos obtenidos con exito", TypePrettyToast.SUCCESS_TOAST, this@MenuPrincipal)
                 } else {
                     prettyToast.showToast(error?.message.toString(), TypePrettyToast.ERROR_TOAST, this@MenuPrincipal)
                     Log.e("data code", code.toString())
@@ -50,6 +50,9 @@ class MenuPrincipal : AppCompatActivity() {
         binding.misEmpleados.setOnClickListener {
             startActivity(Intent(this, InicioActivity::class.java))
             finish()
+        }
+        binding.addEmpleado.setOnClickListener {
+            startActivity(Intent(this, NewColaboradorActivity::class.java))
         }
 
     }

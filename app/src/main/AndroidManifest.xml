@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.InicioActivity"/>
+        <activity android:name=".ui.NewColaboradorActivity"/>
     </application>
 
 </manifest>

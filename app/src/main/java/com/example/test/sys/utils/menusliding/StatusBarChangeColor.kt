@@ -10,7 +10,7 @@ import javax.inject.Inject
 class StatusBarChangeColor @Inject constructor() {
 
     @RequiresApi(Build.VERSION_CODES.M)
-    fun changeColor(activity: Activity, state: Boolean?, position: Int?, slidingStatus: SlidingStatus, colors: ArrayList<Int>?, actividad: String?){
+    fun changeColor(activity: Activity, state: Boolean?, position: Int?, slidingStatus: SlidingStatus?, colors: ArrayList<Int>?, actividad: String?){
         when(actividad){
             "InicioActivity" -> {
                 when(slidingStatus){

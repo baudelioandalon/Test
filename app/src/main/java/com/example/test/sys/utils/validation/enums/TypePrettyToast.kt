@@ -1,4 +1,4 @@
-package com.example.test.sys.utils
+package com.example.test.sys.utils.validation.enums
 
 enum class TypePrettyToast {
     SUCCESS_TOAST,

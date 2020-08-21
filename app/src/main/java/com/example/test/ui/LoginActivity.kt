@@ -14,7 +14,7 @@ import com.example.test.sys.di.component.DaggerComponentLoginViewModel
 import com.example.test.sys.di.component.DaggerComponentPrettyToast
 import com.example.test.sys.di.module.enums.StartSessionResult
 import com.example.test.sys.utils.PrettyToast
-import com.example.test.sys.utils.TypePrettyToast
+import com.example.test.sys.utils.validation.enums.TypePrettyToast
 import com.example.test.viewmodel.LoginViewModel
 import javax.inject.Inject
 

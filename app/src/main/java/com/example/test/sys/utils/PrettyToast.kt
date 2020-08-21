@@ -2,6 +2,7 @@ package com.example.test.sys.utils
 
 import android.app.Activity
 import android.view.Gravity
+import com.example.test.sys.utils.validation.enums.TypePrettyToast
 import com.onurkaganaldemir.ktoastlib.KToast
 import javax.inject.Inject
 

@@ -22,6 +22,7 @@ class App : Application(){
         DaggerComponentDashboardFragmentViewModel.builder().build()
         DaggerComponentUsersFragmentViewModel.builder().build()
         DaggerComponentDashboardUserLocalDS.builder().build()
+        DaggerComponentDashboardUserFirebaseDS.builder().build()
         DaggerComponentColorMarker.builder().build()
     }
 

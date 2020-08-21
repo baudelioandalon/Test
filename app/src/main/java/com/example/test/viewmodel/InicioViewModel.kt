@@ -13,7 +13,7 @@ class InicioViewModel @Inject constructor(): ViewModel(){
 
     var fragmentsInicio: MutableLiveData<ArrayList<Fragment>> = MutableLiveData(arrayListOf(DashboardFragment(), UsersFragment()))
     var position: MutableLiveData<Int> = MutableLiveData(0)
-    val stateMenu: MutableLiveData<Boolean> = MutableLiveData(false)
+    val stateMenu: MutableLiveData<Boolean> = MutableLiveData(true)
     val topColors: MutableLiveData<ArrayList<Int>> = MutableLiveData(arrayListOf(R.color.blue_light, R.color.blue_strong, R.color.white))
 
 }
