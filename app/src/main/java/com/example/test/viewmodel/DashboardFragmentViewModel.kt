@@ -1,6 +1,5 @@
 package com.example.test.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.test.domain.DashboardUserRepository
 import com.example.test.network.model.jsonModel.Employee

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 <data>
     <variable
@@ -12,18 +14,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:textAlignment="center"
-        android:text="TEXTO"
-        android:textSize="30sp"
+    <androidx.recyclerview.widget.RecyclerView
+        tools:itemCount="4"
+        android:layout_marginHorizontal="10dp"
+        tools:listitem="@layout/user_item"
+        android:scrollbars="vertical"
+        android:id="@+id/recyclerProductos"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal" />
-    <EditText
-        android:background="@color/white"
-        android:text="TEXTO"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
 

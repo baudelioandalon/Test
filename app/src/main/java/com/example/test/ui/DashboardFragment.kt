@@ -33,12 +33,10 @@ import javax.inject.Inject
     private lateinit var binding: FragmentDashboardBinding
 
     private val DEFAULT_ZOOM = 16f
-    var count = 0
 
     @Nullable
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.e("onCreateView", count++.toString())
         DaggerComponentDashboardFragmentViewModel.create().inject(this)
         DaggerComponentColorMarker.create().inject(this)
         viewModel = ViewModelProvider(this).get(DashboardFragmentViewModel::class.java)
@@ -49,13 +47,8 @@ import javax.inject.Inject
             viewModel.requestLocalUsers() }
         return  binding.root}
 
-    override fun onViewCreated(view: View, @Nullable savedInstanceState: Bundle?) {
-        Log.e("onViewCreated", count++.toString())
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.e("onActivityCreated", count++.toString())
 
         viewModel.users.observe(viewLifecycleOwner, Observer {
             it.forEach { user ->
