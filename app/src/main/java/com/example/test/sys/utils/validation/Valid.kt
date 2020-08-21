@@ -143,9 +143,97 @@ class Valid @Inject constructor(){
                             }
                         }
                     }
+                    TypeValidation.LATITUDE -> {
+                            when(it.typeComponent) {
+                                TypeComponent.EDIT_TEXT -> {
+                                    when (validationMetrics.action) {
+                                        TypeActionFromValidation.CHANGE_DRAWABLE -> {
+                                            (it.element as EditText).apply {
+                                                when {
+                                                    //Case 1
+                                                    text.toString().trim().isEmpty() -> {
+                                                        background = ContextCompat.getDrawable(App.getAppContext(), R.drawable.simple_with_border_red)
+                                                        error = if (validationMetrics.incorrect.isNullOrEmpty()) {
+                                                            "Está vacío"
+                                                        } else {
+                                                            validationMetrics.incorrect
+                                                        }
+                                                        result = false
+                                                    }
+                                                    //Case 2
+                                                    text.toString().trim().toFloat() <= -90 || text.toString().trim().toFloat() >= 90 -> {
+                                                        background = ContextCompat.getDrawable(App.getAppContext(), R.drawable.simple_with_border_red)
+                                                        error = if(validationMetrics.incorrect.isNullOrEmpty()) {
+                                                            "Latitud fuera de rango >= -90 && <= 90"
+                                                        } else {
+                                                            validationMetrics.incorrect
+                                                        }
+                                                        result = false
+                                                    }
+                                                    else -> {
+                                                        background = ContextCompat.getDrawable(App.getAppContext(),R.drawable.simple_with_border_gray)
+                                                        if(!validationMetrics.correct.isNullOrEmpty()){
+                                                            prettyToast.showToast(
+                                                                validationMetrics.correct,
+                                                                TypePrettyToast.SUCCESS_TOAST,
+                                                                activity)
+                                                        }
+                                                        result = true
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    TypeValidation.LONGITUD -> {
+                        when(it.typeComponent) {
+                            TypeComponent.EDIT_TEXT -> {
+                                when (validationMetrics.action) {
+                                    TypeActionFromValidation.CHANGE_DRAWABLE -> {
+                                        (it.element as EditText).apply {
+                                            when {
+                                                //Case 1
+                                                text.toString().trim().isEmpty() -> {
+                                                    background = ContextCompat.getDrawable(App.getAppContext(), R.drawable.simple_with_border_red)
+                                                    error = if (validationMetrics.incorrect.isNullOrEmpty()) {
+                                                        "Está vacío"
+                                                    } else {
+                                                        validationMetrics.incorrect
+                                                    }
+                                                    result = false
+                                                }
+                                                //Case 2
+                                                text.toString().trim().toFloat() <= -180 || text.toString().trim().toFloat() >= 180 -> {
+                                                    background = ContextCompat.getDrawable(App.getAppContext(), R.drawable.simple_with_border_red)
+                                                    error = if(validationMetrics.incorrect.isNullOrEmpty()) {
+                                                        "Longitud fuera de rango >= -180 && <= 180"
+                                                    } else {
+                                                        validationMetrics.incorrect
+                                                    }
+                                                    result = false
+                                                }
+                                                else -> {
+                                                    background = ContextCompat.getDrawable(App.getAppContext(),R.drawable.simple_with_border_gray)
+                                                    if(!validationMetrics.correct.isNullOrEmpty()){
+                                                        prettyToast.showToast(
+                                                            validationMetrics.correct,
+                                                            TypePrettyToast.SUCCESS_TOAST,
+                                                            activity)
+                                                    }
+                                                    result = true
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    }
                 }
             }
-        }
         return result
     }
 

@@ -92,10 +92,10 @@ class NewColaboradorActivity: AppCompatActivity() {
                 Element( arrayOf(ValidationMetrics(TypeValidation.EMAIL, null, null,
                     1, null, TypeActionFromValidation.CHANGE_DRAWABLE)),
                     binding.txtMail, TypeComponent.EDIT_TEXT),
-                Element( arrayOf(ValidationMetrics(TypeValidation.LIMIT, null, null,
+                Element( arrayOf(ValidationMetrics(TypeValidation.LATITUDE, null, null,
                     1, null, TypeActionFromValidation.CHANGE_DRAWABLE)),
                     binding.txtLat, TypeComponent.EDIT_TEXT),
-                Element( arrayOf(ValidationMetrics(TypeValidation.LIMIT, null, null,
+                Element( arrayOf(ValidationMetrics(TypeValidation.LONGITUD, null, null,
                     1, null, TypeActionFromValidation.CHANGE_DRAWABLE)),
                     binding.txtLog, TypeComponent.EDIT_TEXT)))){
 
