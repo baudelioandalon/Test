@@ -9,12 +9,14 @@ import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.test.adapter.CustomAdapter
 import com.example.test.adapter.CustomListeners
 import com.example.test.databinding.FragmentUsuariosBinding
 import com.example.test.network.model.jsonModel.Employee
 import com.example.test.sys.di.component.DaggerComponentUsersFragmentViewModel
 import com.example.test.viewmodel.UsersFragmentViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -42,7 +44,9 @@ import javax.inject.Inject
     private fun setRecyclerview() {
         binding.recyclerProductos.adapter = CustomAdapter(this)
         viewModel.users.observe(viewLifecycleOwner, Observer {
-            (binding.recyclerProductos.adapter as CustomAdapter).submitList(it) })
+            (binding.recyclerProductos.adapter as CustomAdapter).submitList(it)
+            viewModel.sendUsers(it)
+        })
 
     }
 

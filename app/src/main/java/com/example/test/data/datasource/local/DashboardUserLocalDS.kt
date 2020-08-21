@@ -6,6 +6,7 @@ import com.example.test.network.model.jsonModel.Employee
 import com.example.test.network.model.jsonModel.Location
 import com.example.test.network.model.jsonModel.UserModel
 import com.example.test.sys.di.App
+import com.google.android.gms.tasks.Task
 import com.google.gson.Gson
 import javax.inject.Inject
 import kotlin.collections.ArrayList
@@ -22,11 +23,19 @@ class DashboardUserLocalDS @Inject constructor() {
         observer.onChanged(list)
     }
 
-    fun saveUsersToSQL(jString: String){
+    fun saveUsersFromJsonToSQL(jString: String){
         val gson = Gson()
         val users: UserModel = gson.fromJson(jString, UserModel::class.java)
         val list: ArrayList<UserEntity> = ArrayList()
         users.data.employees.forEach {
+            it.apply { list.add(UserEntity(id.toInt(),name,mail,location.lat,location.log)) }
+        }
+        AppDB.get(App.getAppContext()).userDAO().insertUser(list)
+    }
+
+    fun saveUsersToSQL(users: ArrayList<Employee>){
+        val list: ArrayList<UserEntity> = ArrayList()
+        users.forEach {
             it.apply { list.add(UserEntity(id.toInt(),name,mail,location.lat,location.log)) }
         }
         AppDB.get(App.getAppContext()).userDAO().insertUser(list)

@@ -49,7 +49,6 @@ class MenuPrincipal : AppCompatActivity() {
 
         binding.misEmpleados.setOnClickListener {
             startActivity(Intent(this, InicioActivity::class.java))
-            finish()
         }
         binding.addEmpleado.setOnClickListener {
             startActivity(Intent(this, NewColaboradorActivity::class.java))

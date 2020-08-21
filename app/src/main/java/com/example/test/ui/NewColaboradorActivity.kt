@@ -52,6 +52,7 @@ class NewColaboradorActivity: AppCompatActivity() {
 
         //ViewModel INIT
         viewModel = ViewModelProvider(this).get(NewColaboradorViewModel::class.java)
+        lifecycle.addObserver(viewModel)
 
         //ChangeColorTop
         statusBarChangeColor.changeColor(this,null,null, null,
@@ -98,20 +99,12 @@ class NewColaboradorActivity: AppCompatActivity() {
                     1, null, TypeActionFromValidation.CHANGE_DRAWABLE)),
                     binding.txtLog, TypeComponent.EDIT_TEXT)))){
 
-                viewModel.sendUsers(arrayListOf(Employee("2423",
-                    Location("23.324", "34.222"),binding.txtMail.text.toString().trim(),
-                    binding.txtName.text.toString().trim())), observerSet())
-
-        }
-    }
-
-    private fun observerSet(): Observer<Task<Void>> {
-        return Observer {
-            if(it.isSuccessful){
-                prettyToast.showToast("Correct", TypePrettyToast.SUCCESS_TOAST, this)
-            }else{
-                prettyToast.showToast("Algo salio mal", TypePrettyToast.ERROR_TOAST, this)
-            }
+                viewModel.sendUsers(arrayListOf(Employee(viewModel.maxValue.value.toString(),
+                    Location(binding.txtLat.text.toString().trim(), binding.txtLog.text.toString().trim()),
+                    binding.txtMail.text.toString().trim(),
+                    binding.txtName.text.toString().trim())))
+            prettyToast.showToast("Correct", TypePrettyToast.SUCCESS_TOAST, this)
+            finish()
         }
     }
 

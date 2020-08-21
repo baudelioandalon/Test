@@ -62,6 +62,7 @@ import javax.inject.Inject
                         )
                 }
             }
+            viewModel.sendUsers(it)
         })
     }
 }

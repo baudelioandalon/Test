@@ -23,8 +23,12 @@ class DashboardUserRepository @Inject constructor() {
         dashboardUserLocalDS.getUsersFromSQL(observer)
     }
 
-    fun setLocalUsers(jString: String){
-        dashboardUserLocalDS.saveUsersToSQL(jString)
+    fun setLocalUsersFromJsonToSQL(jString: String){
+        dashboardUserLocalDS.saveUsersFromJsonToSQL(jString)
+    }
+
+    fun setLocalUsersToSQL(users: ArrayList<Employee>){
+        dashboardUserLocalDS.saveUsersToSQL(users)
     }
 
     fun setFirebaseUsers(users: ArrayList<Employee>, observer: Observer<Task<Void>>){

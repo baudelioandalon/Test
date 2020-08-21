@@ -6,11 +6,14 @@ import com.example.test.domain.DashboardUserRepository
 import com.example.test.domain.FileRepository
 import com.example.test.domain.MenuRepository
 import com.example.test.network.model.Data
+import com.example.test.network.model.entity.UserEntity
+import com.example.test.network.model.jsonModel.Employee
 import com.example.test.sys.di.component.DaggerComponentDecompressZip
 import com.example.test.sys.di.component.DaggerComponentFileRepository
 import com.example.test.sys.di.component.DaggerComponentMenuRepository
 import com.example.test.sys.di.component.DaggerComponentDashboardUserRepository
 import com.example.test.sys.utils.DecompressZip
+import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
@@ -37,7 +40,6 @@ class MenuViewModel @Inject constructor(): ViewModel(), LifecycleObserver {
         DaggerComponentDecompressZip.create().inject(this)
     }
 
-
     private fun onRequestURL(searchString: String){
         //Step 1 -> getContentUrl
         menuRepository.requestDataURLFromNetwork(searchString, observerContentZip())
@@ -47,7 +49,6 @@ class MenuViewModel @Inject constructor(): ViewModel(), LifecycleObserver {
         //Step 2 -> DownloadZipFile
         fileRespository.requestFileFromNetwork(url, observerFileDownloading())
     }
-
 
     private fun observerContentZip() : Observer<Data>{
         return Observer { response ->
@@ -92,7 +93,7 @@ class MenuViewModel @Inject constructor(): ViewModel(), LifecycleObserver {
                     Charset.defaultCharset().decode(bb).toString()
                 }
                 viewModelScope.launch {
-                    dashboardUserRepository.setLocalUsers(jString)
+                    dashboardUserRepository.setLocalUsersFromJsonToSQL(jString)
                 }
             }
         }
