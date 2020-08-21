@@ -21,12 +21,10 @@ import javax.inject.Inject
 class LoginActivity : AppCompatActivity() {
 
     //Dagger
-    @Inject
-    lateinit var prettyToast: PrettyToast
-    @Inject
-    lateinit var viewModel: LoginViewModel
+    @Inject lateinit var prettyToast: PrettyToast
+    @Inject lateinit var viewModel: LoginViewModel
 
-    lateinit var dataBindingUtil: ActivityLoginBinding
+    lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         DaggerComponentLoginViewModel.create().inject(this)
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         AppDB.get(App.getAppContext())
-        dataBindingUtil = DataBindingUtil.setContentView<ActivityLoginBinding>(this,
+        binding = DataBindingUtil.setContentView<ActivityLoginBinding>(this,
                 R.layout.activity_login).apply {
             //*** Con el apply puedes acceder a lo que está dentro del elemento ***
             this.lifecycleOwner = this@LoginActivity
@@ -43,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         viewModel.loggingUser.observeForever {
-            dataBindingUtil.apply {
+            binding.apply {
                 if(it){
                     scrollContent.visibility = View.GONE
                     imgStarting.visibility = View.VISIBLE
@@ -58,8 +56,8 @@ class LoginActivity : AppCompatActivity() {
                 StartSessionResult.CORRECT -> {
                     prettyToast.showToast("Bienvenido", TypePrettyToast.SUCCESS_TOAST, this)
                     startActivity(Intent(this, MenuPrincipal::class.java))
-                    dataBindingUtil.scrollContent.visibility = View.VISIBLE
-                    dataBindingUtil.imgStarting.visibility = View.GONE
+                    binding.scrollContent.visibility = View.VISIBLE
+                    binding.imgStarting.visibility = View.GONE
                     finish()
                 }
                 StartSessionResult.EMAIL_NOT_VERIFIED -> {
@@ -72,8 +70,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     private fun logging(){
-        val user = dataBindingUtil.txtEmail.text.toString().trim()
-        val pass = dataBindingUtil.txtPassword.text.toString().trim()
+        val user = binding.txtEmail.text.toString().trim()
+        val pass = binding.txtPassword.text.toString().trim()
         if(user.isEmpty() || pass.isEmpty()){
             return prettyToast.showToast("Vacio", TypePrettyToast.WARNING_TOAST, this)
         }
